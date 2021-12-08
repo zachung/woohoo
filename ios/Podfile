@@ -6,6 +6,9 @@ platform :ios, '11.0'
 target 'woohoo' do
   config = use_native_modules!
 
+  # Pods for test_google_signin
+  pod 'GoogleSignIn', '~> 6.0.2'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # to enable hermes on iOS, change `false` to `true` and then install pods

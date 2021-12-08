@@ -1,47 +1,68 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+  User,
+} from '@react-native-google-signin/google-signin';
 
 function App() {
   // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User>({user:{}} as User);
 
-  // Handle user state changes
-  function onAuthStateChanged(user: any) {
-    setUser(user);
-    if (initializing) setInitializing(false);
+  GoogleSignin.configure();
+
+  function setState(param: { userInfo: User }) {
+    setUser(param.userInfo)
+    console.log(param.userInfo)
   }
 
-  useEffect(() => {
-    return auth().onAuthStateChanged(onAuthStateChanged); // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  if (!user) {
-    auth()
-      .signInAnonymously()
-      .then(() => {
-        console.log('User signed in anonymously');
-      })
-      .catch(error => {
-        if (error.code === 'auth/operation-not-allowed') {
-          console.log('Enable anonymous in your firebase console.');
-        }
-
-        console.error(error);
-      });
+  // Somewhere in your code
+  const onGoogleButtonPress = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      setState({ userInfo });
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
+    }
+  };
+  function GoogleSignIn() {
+    if (user.idToken) {
+      return <></>
+    }
     return (
-      <View>
-        <Text>Login</Text>
-      </View>
+      <GoogleSigninButton
+        onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'))}
+      />
     );
+  }
+  function UserInfo() {
+    if (!user.idToken) {
+      return <></>
+    }
+    return (
+        <Text>Welcome {user.user.email}</Text>
+    )
   }
 
   return (
     <View>
-      <Text>Welcome {user.email}</Text>
+      <Text />
+      <Text />
+      <Text />
+      <Text />
+      <GoogleSignIn />
+      <UserInfo />
     </View>
   );
 }
