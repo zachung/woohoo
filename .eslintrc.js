@@ -1,4 +1,8 @@
+/* eslint-env node */
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+  ],
 };
