@@ -1,15 +1,16 @@
-import React, { useState, memo } from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
+import { Text, View } from "react-native";
 import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
   User
 } from "@react-native-google-signin/google-signin";
+import Firestore from "./Firestore";
 import styles from "./Styles";
 
 
-const GoogleSignIn = function GoogleSignIn() {
+const GoogleSignIn = function() {
   // Set an initializing state whilst Firebase connects
   const [user, setUser] = useState<User>({ user: {} } as User);
   const [msg, setMsg] = useState("");
@@ -39,17 +40,20 @@ const GoogleSignIn = function GoogleSignIn() {
     }
   };
 
-  const UserInfo = memo(() => {
+  const UserInfo = function() {
     if (!user.idToken) {
       return <Text style={styles.innerText}>{msg}</Text>;
     }
     return (
-      <Text style={styles.baseText}>
-        Welcome
-        {user.user.email}
-      </Text>
+      <View>
+        <Text style={styles.baseText}>
+          Welcome
+          {user.user.email}
+        </Text>
+        <Firestore user={user} />
+      </View>
     );
-  });
+  };
 
   if (user.idToken) {
     return <UserInfo />;

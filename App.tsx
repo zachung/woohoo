@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import GoogleSignIn from "./src/GoogleSignIn";
 import styles from "./src/Styles";
 
-const App = function App() {
+const App = function() {
   return (
     <View style={styles.mainView}>
       <Text />
