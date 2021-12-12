@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes
 } from "@react-native-google-signin/google-signin";
-import Firestore from "./Firestore";
-import styles from "./Styles";
 import { User } from "./types";
-import Messenger from "./Messenger";
+import styles from "./Styles";
 
-const GoogleSignIn = function() {
-  // for debug
-  let initialUser = { name: "test", email: "test" };
-
-  const [user, setUser] = useState<User>(initialUser);
+const GoogleSignIn = function(props: { afterSignIn: (user: User) => void }) {
   const [msg, setMsg] = useState("");
 
   GoogleSignin.configure();
@@ -24,7 +18,7 @@ const GoogleSignIn = function() {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      setUser(userInfo.user as User);
+      props.afterSignIn(userInfo.user as User);
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         setMsg("user cancelled the login flow");
@@ -38,29 +32,13 @@ const GoogleSignIn = function() {
     }
   };
 
-  const UserInfo = function() {
-    if (!user) {
-      return <Text style={styles.innerText}>{msg}</Text>;
-    }
-    return (
-      <View>
-        <Text style={styles.baseText}>
-          Welcome
-          {user.email}
-        </Text>
-        <Firestore name={user.email} />
-        <Messenger user={user} />
-      </View>
-    );
-  };
-
-  if (user) {
-    return <UserInfo />;
-  }
   return (
-    <GoogleSigninButton
-      onPress={() => onGoogleButtonPress().then(() => console.log("Signed in with Google!"))}
-    />
+    <>
+      <GoogleSigninButton
+        onPress={() => onGoogleButtonPress().then(() => console.log("Signed in with Google!"))}
+      />
+      <Text style={styles.innerText}>{msg}</Text>
+    </>
   );
 };
 
