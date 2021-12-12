@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
-import { User } from "@react-native-google-signin/google-signin";
 import { firebase } from "@react-native-firebase/database";
 
 interface Clicker {
   count: number;
 }
 
-const Firestore = function(props: { user: User }) {
+const Firestore = function(props: { name: string }) {
   const [mounted, setMounted] = useState(false);
   const [count, setCount] = useState<number>(0);
   const [list, setList] = useState<{ [key: string]: Clicker }>({});
-  let name = props.user.user.email.replace(".", "_");
+  let name = props.name.replace(".", "_");
 
   const database = firebase
     .app()
@@ -40,14 +39,15 @@ const Firestore = function(props: { user: User }) {
 
   return (
     <View>
-      <Text>{props.user.user.email}</Text>
+      <Text>{props.name}</Text>
       <Button title={"Press me"} onPress={onPress} />
-      <Text>{count}</Text>
+      <Text>You are {name}, count: {count}</Text>
+      <Text>Board:</Text>
       {
         Object.entries(list)
           .map(([name, clicker]) => {
             return (
-              <Text key={name}>{name}: {clicker.count}</Text>
+              <Text key={name}>- {name}: {clicker.count}</Text>
             );
           })
       }
