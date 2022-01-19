@@ -11,7 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2CF45FED2797AA6600FC47CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF45FEC2797AA6600FC47CE /* GoogleService-Info.plist */; };
+		2CF5BF59279854AF00672759 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5BF58279854AF00672759 /* GoogleService-Info.plist */; };
 		6172F2D35A4C3AA820D92908 /* libPods-woohoo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6423831EA8574132BED9D8CC /* libPods-woohoo.a */; };
 		7EF68E3733C33B6898317E18 /* libPods-woohoo-woohooTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFE59519B596E51CEFDCCC0 /* libPods-woohoo-woohooTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = woohoo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = woohoo/main.m; sourceTree = "<group>"; };
 		1D0AE47A65C8663E3B452821 /* Pods-woohoo-woohooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-woohoo-woohooTests.release.xcconfig"; path = "Target Support Files/Pods-woohoo-woohooTests/Pods-woohoo-woohooTests.release.xcconfig"; sourceTree = "<group>"; };
-		2CF45FEC2797AA6600FC47CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2CF5BF58279854AF00672759 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6423831EA8574132BED9D8CC /* libPods-woohoo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-woohoo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C97AB639B58BBB4B15BBE30 /* Pods-woohoo-woohooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-woohoo-woohooTests.debug.xcconfig"; path = "Target Support Files/Pods-woohoo-woohooTests/Pods-woohoo-woohooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = woohoo/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2CF45FEC2797AA6600FC47CE /* GoogleService-Info.plist */,
+				2CF5BF58279854AF00672759 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* woohoo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* woohooTests */,
@@ -248,7 +248,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				2CF45FED2797AA6600FC47CE /* GoogleService-Info.plist in Resources */,
+				2CF5BF59279854AF00672759 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
