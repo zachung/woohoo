@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Text, View } from "react-native";
-import { firebase } from "@react-native-firebase/database";
+import storage from "./Storage";
 
 interface Clicker {
   count: number;
@@ -12,9 +12,7 @@ const Firestore = function(props: { name: string }) {
   const [list, setList] = useState<{ [key: string]: Clicker }>({});
   let name = props.name.replace(".", "_");
 
-  const database = firebase
-    .app()
-    .database("https://woohoo-f1e6f-default-rtdb.asia-southeast1.firebasedatabase.app/");
+  const database = storage.database();
   if (!mounted) {
     database
       .ref("/clickers")

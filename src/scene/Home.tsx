@@ -6,12 +6,14 @@ import { User } from "../types";
 import AfterSignIn from "../AfterSignIn";
 import EmailSignIn from "../EmailSignIn";
 import { Navigation } from "react-native-navigation";
+import storage from "../Storage";
 
 const Home = function(props: { componentId: string }) {
   // for debug
-  let initialUser = { name: "test", email: "test" };
 
-  const [user, setUser] = useState<User>(initialUser);
+  const [isInit, setIsInit] = useState<Boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<String>("");
+  const [user, setUser] = useState<User>();
   const onSignIn = function(user: User) {
     setUser(user);
   };
@@ -48,12 +50,38 @@ const Home = function(props: { componentId: string }) {
     );
   };
 
+  storage.init().then(() => {
+    setIsInit(true);
+  }).catch((error: Error) => {
+    setErrorMessage(error.message);
+  });
+
+  const Index = function() {
+    return (
+      <View style={styles.root}>
+        <SettingButton />
+        <Text>Hello Woohoo!</Text>
+        <SignPanel />
+      </View>
+    );
+  };
+
+  const SplashScreen = function() {
+    if (!isInit) {
+      return (
+        <View>
+          <Text>Waiting init...</Text>
+          <Text>{errorMessage}</Text>
+        </View>
+      );
+    }
+    return (
+      <Index />
+    );
+  };
+
   return (
-    <View style={styles.root}>
-      <SettingButton />
-      <Text>Hello Woohoo!</Text>
-      <SignPanel />
-    </View>
+    <SplashScreen />
   );
 };
 Home.options = {

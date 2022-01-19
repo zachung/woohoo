@@ -23,7 +23,6 @@ DerivedData
 
 # Android/IntelliJ
 #
-build/
 .idea
 .gradle
 local.properties
@@ -58,3 +57,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# GoogleSerivces
+/android/app/google-services.json
+/ios/GoogleService-Info.plist

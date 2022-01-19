@@ -3,7 +3,7 @@ import { Text, TextInput } from "react-native";
 import { useState } from "react";
 import styles from "./Styles";
 import { User } from "./types";
-import { firebase } from "@react-native-firebase/database";
+import storage from "./Storage";
 
 interface Message {
   name: string,
@@ -16,9 +16,7 @@ const Messenger = function(props: { user: User }) {
   const [mounted, setMounted] = useState(false);
   const [messages, setMessages] = useState<{ [key: string]: Message }>({});
 
-  const database = firebase
-    .app()
-    .database("https://woohoo-f1e6f-default-rtdb.asia-southeast1.firebasedatabase.app/");
+  const database = storage.database();
   if (!mounted) {
     database
       .ref("/messages")
