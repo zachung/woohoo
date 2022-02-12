@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import GoogleSignIn from "../GoogleSignIn";
 import styles from "../Styles";
 import { User } from "../types";
 import AfterSignIn from "../AfterSignIn";
 import EmailSignIn from "../EmailSignIn";
-import { Navigation } from "react-native-navigation";
 import storage from "../Storage";
 
 const Home = function(props: { componentId: string }) {
@@ -26,29 +25,10 @@ const Home = function(props: { componentId: string }) {
       </>;
     }
     return (
-      <AfterSignIn user={user} />
+      <AfterSignIn user={user} componentId={props.componentId} />
     );
   };
 
-  const SettingButton = function() {
-    return (
-      <Button
-        title="Push Settings Screen"
-        color="#710ce3"
-        onPress={() => Navigation.push(props.componentId, {
-          component: {
-            name: "Settings",
-            options: {
-              topBar: {
-                title: {
-                  text: "Settings"
-                }
-              }
-            }
-          }
-        })} />
-    );
-  };
 
   storage.init().then(() => {
     setIsInit(true);
@@ -59,7 +39,6 @@ const Home = function(props: { componentId: string }) {
   const Index = function() {
     return (
       <View style={styles.root}>
-        <SettingButton />
         <Text>Hello Woohoo!</Text>
         <SignPanel />
       </View>

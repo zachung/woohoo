@@ -2,10 +2,10 @@ import React from "react";
 import { Text, View } from "react-native";
 import { User } from "./types";
 import styles from "./Styles";
-import Firestore from "./Firestore";
+import Records from "./scene/Records";
 import Messenger from "./Messenger";
 
-const AfterSignIn = function(props: { user: User }) {
+const AfterSignIn = function(props: { user: User, componentId: string }) {
   const user = props.user;
   return (
     <View>
@@ -13,7 +13,7 @@ const AfterSignIn = function(props: { user: User }) {
         Welcome
         {user.email}
       </Text>
-      <Firestore name={user.email} />
+      <Records name={user.email} componentId={props.componentId} />
       <Messenger user={user} />
     </View>
   );
